@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6l8bj0oj2rxy"]
+
+[ext_resource type="Texture2D" uid="uid://donija0rwokcn" path="res://assets/decorations_LRK.png" id="1_vlc7k"]
+[ext_resource type="Script" uid="uid://dr823prnq0bt8" path="res://scripts/clock.gd" id="1_y58p0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y58p0"]
+atlas = ExtResource("1_vlc7k")
+region = Rect2(16, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eptq3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y58p0")
+}],
+"loop": true,
+"name": &"clock",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dv1d"]
+radius = 7.07107
+
+[node name="clock" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_y58p0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eptq3")
+animation = &"clock"
+autoplay = "clock"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7dv1d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

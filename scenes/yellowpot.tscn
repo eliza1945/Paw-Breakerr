@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcrkbmt6y7qqg"]
+
+[ext_resource type="Script" uid="uid://bl4v4lckq58sp" path="res://scripts/yellowpot.gd" id="1_8c31a"]
+[ext_resource type="Texture2D" uid="uid://donija0rwokcn" path="res://assets/decorations_LRK.png" id="1_hvysw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c31a"]
+atlas = ExtResource("1_hvysw")
+region = Rect2(48, 80, 16, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nac5t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c31a")
+}],
+"loop": true,
+"name": &"yellow pot",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gkym6"]
+radius = 7.07107
+
+[node name="yellowpot" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_8c31a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nac5t")
+animation = &"yellow pot"
+autoplay = "yellow pot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_gkym6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

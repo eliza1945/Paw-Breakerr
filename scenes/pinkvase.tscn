@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqak83cdrqmr8"]
+
+[ext_resource type="Texture2D" uid="uid://donija0rwokcn" path="res://assets/decorations_LRK.png" id="1_a581y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hv5d"]
+atlas = ExtResource("1_a581y")
+region = Rect2(48, 120, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_235l5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hv5d")
+}],
+"loop": true,
+"name": &"pinkvase",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qrsvs"]
+radius = 6.08276
+
+[node name="pinkvase" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_235l5")
+animation = &"pinkvase"
+autoplay = "pinkvase"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_qrsvs")

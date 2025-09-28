@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://qf1bun5yv3sm"]
+
+[ext_resource type="Script" uid="uid://c188ewl1sr2xt" path="res://scripts/smalllamp.gd" id="1_bjucr"]
+[ext_resource type="Texture2D" uid="uid://vkgrju1eivce" path="res://assets/decorations_BR.png" id="1_syalf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjucr"]
+atlas = ExtResource("1_syalf")
+region = Rect2(96, 48, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44xf2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjucr")
+}],
+"loop": true,
+"name": &"smalllamp",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll785"]
+radius = 6.32456
+
+[node name="smalllamp" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_bjucr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_44xf2")
+animation = &"smalllamp"
+autoplay = "smalllamp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ll785")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

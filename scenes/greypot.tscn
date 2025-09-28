@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://qnji421n1vlk"]
+
+[ext_resource type="Texture2D" uid="uid://donija0rwokcn" path="res://assets/decorations_LRK.png" id="1_ykif7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvf57"]
+atlas = ExtResource("1_ykif7")
+region = Rect2(80, 80, 16, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tes6q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvf57")
+}],
+"loop": true,
+"name": &"grey pot",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rp8q7"]
+radius = 7.0
+
+[node name="greypot" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tes6q")
+animation = &"grey pot"
+autoplay = "grey pot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_rp8q7")

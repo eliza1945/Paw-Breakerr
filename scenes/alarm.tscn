@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dle2gp5idbo50"]
+
+[ext_resource type="Texture2D" uid="uid://vkgrju1eivce" path="res://assets/decorations_BR.png" id="1_60k40"]
+[ext_resource type="Script" uid="uid://sxsyrs4epal2" path="res://scripts/alarm.gd" id="1_y63g5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y63g5"]
+atlas = ExtResource("1_60k40")
+region = Rect2(96, 24, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aj4iq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y63g5")
+}],
+"loop": true,
+"name": &"alarm",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atdqw"]
+radius = 5.09902
+
+[node name="alarm" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_y63g5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aj4iq")
+animation = &"alarm"
+autoplay = "alarm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_atdqw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

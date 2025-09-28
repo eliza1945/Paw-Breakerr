@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn117kdkvt7wy"]
+
+[ext_resource type="Texture2D" uid="uid://ex5g66frwx7u" path="res://assets/Paintings_1.png" id="1_mqo1f"]
+[ext_resource type="Script" uid="uid://di0va0qwifs7f" path="res://scripts/flowerframe.gd" id="1_tsba7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsba7"]
+atlas = ExtResource("1_mqo1f")
+region = Rect2(46, 48, 23, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n2o3s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsba7")
+}],
+"loop": true,
+"name": &"flowerframe",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_564l5"]
+size = Vector2(15, 30)
+
+[node name="flowerframe" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_tsba7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n2o3s")
+animation = &"flowerframe"
+autoplay = "flowerframe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 8)
+shape = SubResource("RectangleShape2D_564l5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

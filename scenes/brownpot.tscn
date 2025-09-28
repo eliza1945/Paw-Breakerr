@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://rotndnf48jsc"]
+
+[ext_resource type="Texture2D" uid="uid://donija0rwokcn" path="res://assets/decorations_LRK.png" id="1_kst6y"]
+[ext_resource type="Script" uid="uid://kbulnu567xkg" path="res://scripts/brownpot.gd" id="1_ulllr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulllr"]
+atlas = ExtResource("1_kst6y")
+region = Rect2(80, 120, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_laim7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulllr")
+}],
+"loop": true,
+"name": &"brown pot",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n82yb"]
+radius = 4.0
+
+[node name="brownpot" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_ulllr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_laim7")
+animation = &"brown pot"
+autoplay = "brown pot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_n82yb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

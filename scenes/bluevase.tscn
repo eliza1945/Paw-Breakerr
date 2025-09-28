@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://wnq0jkxc427m"]
+
+[ext_resource type="Texture2D" uid="uid://donija0rwokcn" path="res://assets/decorations_LRK.png" id="1_104g7"]
+[ext_resource type="Script" uid="uid://babr4sa4r4rva" path="res://scripts/bluevase.gd" id="1_gt348"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt348"]
+atlas = ExtResource("1_104g7")
+region = Rect2(64, 120, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jy0hl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt348")
+}],
+"loop": true,
+"name": &"blue vase",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7v5j"]
+radius = 5.09902
+
+[node name="bluevase" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_gt348")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jy0hl")
+animation = &"blue vase"
+autoplay = "blue vase"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_s7v5j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

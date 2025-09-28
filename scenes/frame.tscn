@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://kny4thji4wrm"]
+
+[ext_resource type="Texture2D" uid="uid://donija0rwokcn" path="res://assets/decorations_LRK.png" id="1_dvj6e"]
+[ext_resource type="Script" uid="uid://cdb8hjia73m8c" path="res://scripts/frame.gd" id="1_q7572"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7572"]
+atlas = ExtResource("1_dvj6e")
+region = Rect2(96, 80, 48, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jlx0t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7572")
+}],
+"loop": true,
+"name": &"frame",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ps88x"]
+size = Vector2(32, 15)
+
+[node name="frame" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_q7572")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jlx0t")
+animation = &"frame"
+autoplay = "frame"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 3.5)
+shape = SubResource("RectangleShape2D_ps88x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

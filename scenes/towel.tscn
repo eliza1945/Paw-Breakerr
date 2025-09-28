@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbrpq6s4yoohv"]
+
+[ext_resource type="Texture2D" uid="uid://bwbu2cro8j63e" path="res://assets/textiles_BA.png" id="1_csf4g"]
+[ext_resource type="Script" uid="uid://dh3dtg8db22r5" path="res://scripts/towel.gd" id="1_u1688"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1688"]
+atlas = ExtResource("1_csf4g")
+region = Rect2(192, 115, 16, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d8tsr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1688")
+}],
+"loop": true,
+"name": &"towel",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jbtc"]
+size = Vector2(9, 15)
+
+[node name="towel" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_u1688")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d8tsr")
+animation = &"towel"
+autoplay = "towel"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_0jbtc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
